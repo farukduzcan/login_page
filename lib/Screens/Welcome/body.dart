@@ -4,6 +4,7 @@ import 'package:login_page/Screens/Welcome/components/background.dart';
 import 'package:login_page/constants.dart';
 
 import '../../components/raunded_button.dart';
+import '../Login/login_screen.dart';
 
 class Body extends StatelessWidget {
   const Body({super.key});
@@ -33,7 +34,14 @@ class Body extends StatelessWidget {
             ),
             RaundedButton(
               buttonText: "Login",
-              press: () {},
+              press: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) {
+                    return const LoginScreen();
+                  }),
+                );
+              },
               shadowColor: Colors.deepPurpleAccent,
               elevation: 3,
             ),
