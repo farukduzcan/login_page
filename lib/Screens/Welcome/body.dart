@@ -5,6 +5,7 @@ import 'package:login_page/constants.dart';
 
 import '../../components/raunded_button.dart';
 import '../Login/login_screen.dart';
+import '../Singup/singup_screen.dart';
 
 class Body extends StatelessWidget {
   const Body({super.key});
@@ -15,6 +16,7 @@ class Body extends StatelessWidget {
         .size; // This size provide us total height and width of our screen
     return BackGround(
       child: SingleChildScrollView(
+        physics: const BouncingScrollPhysics(),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -47,7 +49,14 @@ class Body extends StatelessWidget {
             ),
             RaundedButton(
               buttonText: "Sing Up",
-              press: () {},
+              press: () {
+                 Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) {
+                    return const SingUpScreen();
+                  }),
+                );
+              },
               textColor: Colors.black,
               color: kPrimaryLightColor,
               shadowColor: Colors.deepPurpleAccent,

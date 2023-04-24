@@ -18,6 +18,9 @@ class RoundedInputField extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextFieldContainer(
       child: TextField(
+        textInputAction: TextInputAction.next,
+        keyboardType: TextInputType.emailAddress,
+        autofillHints: const [AutofillHints.email],
         onChanged: onChanged,
         decoration: InputDecoration(
             hintText: hintText,
@@ -28,4 +31,3 @@ class RoundedInputField extends StatelessWidget {
     );
   }
 }
-
