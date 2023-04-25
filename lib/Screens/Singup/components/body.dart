@@ -11,8 +11,8 @@ import '../../Login/login_screen.dart';
 
 class Body extends StatelessWidget {
   final Widget child;
-  const Body({super.key, required this.child});
-
+  Body({super.key, required this.child});
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -33,15 +33,24 @@ class Body extends StatelessWidget {
             "assets/icons/signup.svg",
             height: size.height * 0.35,
           ),
-          RoundedInputField(
-            hintText: "Email",
-            icon: Icons.person,
-            onChanged: (value) {},
+          Form(
+            key: _formKey,
+            child: Column(children: [
+              RoundedInputField(
+                hintText: "Email",
+                icon: Icons.person,
+                onChanged: (value) {},
+              ),
+              RaundedPasswordField(
+                onChanged: (value) {},
+              ),
+            ]),
           ),
-          RaundedPasswordField(
-            onChanged: (value) {},
-          ),
-          RaundedButton(buttonText: "Sing Up", press: () {}),
+          RaundedButton(
+              buttonText: "Sing Up",
+              press: () {
+                if (_formKey.currentState?.validate() ?? false) {}
+              }),
           AlreadyHaveAnAccount(
             login: false,
             press: () {

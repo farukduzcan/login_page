@@ -19,8 +19,14 @@ class _RaundedPasswordFieldState extends State<RaundedPasswordField> {
   @override
   Widget build(BuildContext context) {
     return TextFieldContainer(
-      child: TextField(
+      child: TextFormField(
         keyboardType: TextInputType.visiblePassword,
+        validator: (value) {
+          if (value == null || value.isEmpty) {
+            return validateMessage;
+          }
+          return null;
+        },
         onChanged: widget.onChanged,
         obscureText: _isHidden,
         decoration: InputDecoration(

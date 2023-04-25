@@ -17,7 +17,13 @@ class RoundedInputField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFieldContainer(
-      child: TextField(
+      child: TextFormField(
+        validator: (value) {
+          if (value == null || value.isEmpty) {
+            return validateMessage;
+          }
+          return null;
+        },
         textInputAction: TextInputAction.next,
         keyboardType: TextInputType.emailAddress,
         autofillHints: const [AutofillHints.email],

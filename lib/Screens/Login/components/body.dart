@@ -10,7 +10,8 @@ import '../../../components/raunded_input_field.dart';
 import '../../../components/raunded_password_field.dart';
 
 class Body extends StatelessWidget {
-  const Body({
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  Body({
     super.key,
   });
 
@@ -37,15 +38,26 @@ class Body extends StatelessWidget {
               "assets/icons/login.svg",
               width: size.width * 0.35,
             ),
-            RoundedInputField(
-              hintText: "Email",
-              icon: Icons.person,
-              onChanged: (value) {},
+            Form(
+              key: _formKey,
+              child: Column(
+                children: [
+                  RoundedInputField(
+                    hintText: "Email",
+                    icon: Icons.person,
+                    onChanged: (value) {},
+                  ),
+                  RaundedPasswordField(
+                    onChanged: (value) {},
+                  ),
+                ],
+              ),
             ),
-            RaundedPasswordField(
-              onChanged: (value) {},
-            ),
-            RaundedButton(buttonText: "Login", press: () {}),
+            RaundedButton(
+                buttonText: "Login",
+                press: () {
+                  if (_formKey.currentState?.validate() ?? false) {}
+                }),
             AlreadyHaveAnAccount(
               press: () {
                 Navigator.push(
